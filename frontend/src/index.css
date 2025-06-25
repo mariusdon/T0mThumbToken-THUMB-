@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom font family for Calibri */
+@layer base {
+  html {
+    font-family: 'Calibri', 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif;
+  }
+  
+  body {
+    font-family: 'Calibri', 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif;
+    font-feature-settings: 'kern' 1;
+    text-rendering: optimizeLegibility;
+  }
+  
+  * {
+    font-family: inherit;
+  }
+  
+  /* Ensure all text elements use Calibri */
+  h1, h2, h3, h4, h5, h6, p, span, div, button, input, textarea, label, a {
+    font-family: 'Calibri', 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif;
+  }
+} 

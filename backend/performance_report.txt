@@ -1,0 +1,34 @@
+
+TREASURY ALLOCATION NEURAL NETWORK MODEL - PERFORMANCE REPORT
+Generated: 2025-06-24 00:15:51
+
+MODEL PERFORMANCE:
+- Overall R² Score (Test): -922.4194
+- Overall MSE (Test): 0.013535
+
+Per-Maturity R² Scores (Test):
+  - 3M: -2340.8771
+  - 6M: -1874.5675
+  - 1Y: -1253.9565
+  - 2Y: -869.1575
+  - 5Y: -91.4791
+  - 10Y: -14.0163
+  - 30Y: -12.8815
+
+BACKTEST RESULTS (2020-Present):
+- ML Strategy Total Return: -0.12%
+- Equal Weight Total Return: -0.12%
+- ML Strategy Annualized Return: -0.03%
+- Equal Weight Annualized Return: -0.03%
+- ML Strategy Sharpe Ratio: -0.458
+- Equal Weight Sharpe Ratio: -0.458
+- ML Strategy Max Drawdown: -11.11%
+- Equal Weight Max Drawdown: -11.11%
+- Information Ratio: nan
+- ML Strategy Win Rate: 50.00%
+- Equal Weight Win Rate: 50.00%
+
+OUTPERFORMANCE:
+- Total Return Outperformance: 0.00%
+- Sharpe Ratio Outperformance: 0.000
+- Risk-Adjusted Outperformance: nan
