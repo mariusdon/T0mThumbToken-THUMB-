@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ethers } from 'ethers';
 import { PieChart, Pie, Cell } from 'recharts';
 import YieldCurveChart from './components/YieldCurveChart';
@@ -17,6 +17,21 @@ const THUMB_VAULT_ADDRESS = '0x4eA3c91F275afA8c8c831ba2e37Fa1A18ec928e7';
 // Colors for pie chart
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82CA9D', '#FFC658'];
 
+// Mock data for production deployment
+const MOCK_YIELD_CURVE_DATA = {
+  maturities: ['3M', '6M', '1Y', '2Y', '5Y', '10Y', '30Y'],
+  yields: [5.25, 5.30, 5.35, 5.40, 5.45, 5.50, 5.55]
+};
+
+const MOCK_OPTIMAL_ALLOCATION = {
+  allocation: [0.15, 0.20, 0.25, 0.20, 0.10, 0.08, 0.02]
+};
+
+const MOCK_BACKTEST_DATA = {
+  dates: ['2023-01', '2023-02', '2023-03', '2023-04', '2023-05'],
+  returns: [0.02, 0.015, 0.025, 0.018, 0.022]
+};
+
 function App() {
   const [account, setAccount] = useState('');
   const [thumbTokenContract, setThumbTokenContract] = useState(null);
@@ -25,9 +40,9 @@ function App() {
   const [vaultBalance, setVaultBalance] = useState('0');
   const [totalVaultBalance, setTotalVaultBalance] = useState('0');
   const [vaultAllocation, setVaultAllocation] = useState([]);
-  const [optimalAllocation, setOptimalAllocation] = useState({});
-  const [yieldCurveData, setYieldCurveData] = useState({});
-  const [backtestData, setBacktestData] = useState({});
+  const [optimalAllocation, setOptimalAllocation] = useState(MOCK_OPTIMAL_ALLOCATION);
+  const [yieldCurveData, setYieldCurveData] = useState(MOCK_YIELD_CURVE_DATA);
+  const [backtestData, setBacktestData] = useState(MOCK_BACKTEST_DATA);
   const [depositAmount, setDepositAmount] = useState('');
   const [faucetRecipient, setFaucetRecipient] = useState('');
   const [loading, setLoading] = useState(false);
@@ -56,10 +71,9 @@ function App() {
 
   useEffect(() => {
     connectWallet();
-    fetchData();
-  }, []);
+  }, [connectWallet]);
 
-  const connectWallet = async () => {
+  const connectWallet = useCallback(async () => {
     if (typeof window.ethereum !== 'undefined') {
       try {
         const accounts = await window.ethereum.request({
@@ -92,7 +106,7 @@ function App() {
     } else {
       alert('Please install MetaMask!');
     }
-  };
+  }, []);
 
   const updateBalances = async (thumbToken, thumbVault, account) => {
     try {
@@ -118,27 +132,6 @@ function App() {
     } catch (error) {
       console.error('Error fetching Vault allocations:', error);
       setVaultAllocation([]);
-    }
-  };
-
-  const fetchData = async () => {
-    try {
-      // Fetch yield curve data
-      const yieldResponse = await fetch('http://127.0.0.1:8000/yield-curve');
-      const yieldData = await yieldResponse.json();
-      setYieldCurveData(yieldData);
-
-      // Fetch optimal allocation
-      const allocationResponse = await fetch('http://127.0.0.1:8000/optimal-allocation');
-      const allocationData = await allocationResponse.json();
-      setOptimalAllocation(allocationData);
-
-      // Fetch backtest data
-      const backtestResponse = await fetch('http://127.0.0.1:8000/backtest');
-      const backtestData = await backtestResponse.json();
-      setBacktestData(backtestData);
-    } catch (error) {
-      console.error('Error fetching data:', error);
     }
   };
 
@@ -197,37 +190,12 @@ function App() {
     try {
       setIsFauceting(true);
       
-      // Call backend faucet endpoint
-      const response = await fetch('http://127.0.0.1:8000/faucet', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          recipient: faucetRecipient,
-          amount: 100  // Fixed amount of 100 tokens
-        })
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.detail || 'Failed to send tokens');
-      }
-
-      const result = await response.json();
+      // For production, show a message that faucet is not available
+      alert('Faucet functionality is not available in production. Please use testnet faucets or contact the team.');
       
-      alert(`Successfully sent 100 THUMB to ${faucetRecipient.slice(0, 6)}...${faucetRecipient.slice(-4)}\nTransaction: ${result.transaction_hash}`);
-
-      // Clear form
-      setFaucetRecipient('');
-      
-      // Update balances if user is connected
-      if (account) {
-        await updateBalances(thumbTokenContract, thumbVaultContract, account);
-      }
     } catch (error) {
       console.error('Error sending faucet tokens:', error);
-      alert(`Failed to send tokens: ${error.message}`);
+      alert('Error sending faucet tokens: ' + error.message);
     } finally {
       setIsFauceting(false);
     }
