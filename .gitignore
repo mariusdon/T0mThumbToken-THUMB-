@@ -1,17 +1,20 @@
-# Environment variables
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-.env.production
-
-# Node.js dependencies (but keep package.json and package-lock.json)
+# Node.js dependencies
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 yarn.lock
+
+# Build outputs (these are generated, not source)
+.next/
+out/
+build/
+.vercel
+*.tsbuildinfo
+
+# Environment variables
+.env
+.env.*
 
 # Python
 __pycache__/
@@ -26,23 +29,15 @@ env.bak/
 venv.bak/
 .venv/
 .python-version
-ttt-ml-env/
 
-# Hardhat/Smart Contracts build artifacts
+# Hardhat/Smart Contracts
 cache/
 artifacts/
 typechain-types/
 coverage/
 coverage.json
 
-# React/Next.js build outputs (generated during deployment)
-.next/
-out/
-build/
-.vercel
-*.tsbuildinfo
-
-# IDEs and editors
+# IDE/editor
 .vscode/
 .idea/
 *.swp
@@ -55,7 +50,7 @@ Thumbs.db
 logs
 *.log
 
-# ML Model/Data files (large files that shouldn't be in repo)
+# ML Model/Data files
 *.h5
 *.pkl
 *.joblib
@@ -83,11 +78,9 @@ mnemonic.txt
 .secret
 .secrets
 
-# DO NOT IGNORE these important files for deployment:
-# !frontend/public/
-# !frontend/src/
-# !frontend/package.json
-# !frontend/package-lock.json
-# !frontend/netlify.toml
-# !README.md
-# !contracts/*.sol
+# DO NOT IGNORE these (important for deployment)
+!frontend/package.json
+!frontend/package-lock.json
+!frontend/public/
+!frontend/src/
+!frontend/netlify.toml
