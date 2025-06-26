@@ -19,7 +19,6 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#82CA9D'
 
 function App() {
   const [account, setAccount] = useState('');
-  const [provider, setProvider] = useState(null);
   const [thumbTokenContract, setThumbTokenContract] = useState(null);
   const [thumbVaultContract, setThumbVaultContract] = useState(null);
   const [balance, setBalance] = useState('0');
@@ -69,9 +68,7 @@ function App() {
         const account = accounts[0];
         setAccount(account);
 
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      setProvider(provider);
-
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         const thumbToken = new ethers.Contract(
           THUMB_TOKEN_ADDRESS,

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const maturities = ['3M', '6M', '1Y', '2Y', '5Y', '10Y', '30Y'];
-const accentColor = '#6366f1'; // Tailwind's indigo-500
 
 const YieldCurveChart = () => {
   const [data, setData] = useState([]);

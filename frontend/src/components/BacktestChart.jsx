@@ -53,23 +53,6 @@ const BacktestChart = () => {
     fetchBacktestData();
   }, []);
 
-  const calculateMaxDrawdown = (values) => {
-    let maxDrawdown = 0;
-    let peak = values[0];
-    
-    for (let i = 1; i < values.length; i++) {
-      if (values[i] > peak) {
-        peak = values[i];
-      }
-      const drawdown = ((peak - values[i]) / peak) * 100;
-      if (drawdown > maxDrawdown) {
-        maxDrawdown = drawdown;
-      }
-    }
-    
-    return maxDrawdown;
-  };
-
   if (loading) {
     return (
       <div className="bg-white rounded-lg shadow-sm border p-6">
