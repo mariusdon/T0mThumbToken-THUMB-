@@ -1,23 +1,101 @@
-# Node.js dependencies
+# Dependencies
 node_modules/
+*/node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-yarn.lock
+
+# Production builds
+build/
+dist/
+*/build/
+*/dist/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+
+# nyc test coverage
+.nyc_output
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+backend/ttt-ml-env/
+
+# Hardhat
+cache/
+artifacts/
+typechain-types/
+
+# Contract artifacts (keep these for frontend)
+!frontend/src/contracts/*.json
+
+# Netlify
+.netlify/
 
 # Build outputs (these are generated, not source)
 .next/
 out/
-build/
 .vercel
 *.tsbuildinfo
 
 # Environment variables
-.env
 .env.*
 
 # Python
-__pycache__/
 *.py[cod]
 *$py.class
 *.so
@@ -31,23 +109,14 @@ venv.bak/
 .python-version
 
 # Hardhat/Smart Contracts
-cache/
-artifacts/
-typechain-types/
-coverage/
 coverage.json
 
 # IDE/editor
-.vscode/
-.idea/
 *.swp
 *.swo
 *~
-.DS_Store
-Thumbs.db
 
 # Logs
-logs
 *.log
 
 # ML Model/Data files

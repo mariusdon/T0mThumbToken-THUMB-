@@ -68,9 +68,9 @@ const OptimalAllocation = () => {
     if (!allocation) return alert("No allocation to set!");
     try {
       // Connect to Ethereum provider (e.g., MetaMask)
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const provider = new ethers.BrowserProvider(window.ethereum);
       await provider.send("eth_requestAccounts", []);
-      const signer = provider.getSigner();
+      const signer = await provider.getSigner();
 
       // Vault contract address
       const contractAddress = "0x4eA3c91F275afA8c8c831ba2e37Fa1A18ec928e7";
