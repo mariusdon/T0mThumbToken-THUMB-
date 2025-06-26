@@ -3,6 +3,11 @@
   command = "npm run build"
   publish = "build"
 
+[build.environment]
+  NODE_VERSION = "18.20.0"
+  NPM_VERSION = "9.8.1"
+  CI = "false"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
