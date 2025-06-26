@@ -68,8 +68,8 @@ function App() {
         const account = accounts[0];
         setAccount(account);
 
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        const signer = await provider.getSigner();
         const thumbToken = new ethers.Contract(
           THUMB_TOKEN_ADDRESS,
           thumbTokenABI.abi,
@@ -99,9 +99,9 @@ function App() {
       const balance = await thumbToken.balanceOf(account);
       const vaultBalance = await thumbVault.getUserBalance(account);
       const totalVaultBalance = await thumbVault.totalAssets();
-      setBalance(ethers.utils.formatEther(balance));
-      setVaultBalance(ethers.utils.formatEther(vaultBalance));
-      setTotalVaultBalance(ethers.utils.formatEther(totalVaultBalance));
+      setBalance(ethers.formatEther(balance));
+      setVaultBalance(ethers.formatEther(vaultBalance));
+      setTotalVaultBalance(ethers.formatEther(totalVaultBalance));
     } catch (error) {
       console.error('Error updating balances:', error);
       setBalance('0');
@@ -147,7 +147,7 @@ function App() {
     
     setLoading(true);
     try {
-      const amount = ethers.utils.parseEther(depositAmount);
+      const amount = ethers.parseEther(depositAmount);
       const approveTx = await thumbTokenContract.approve(THUMB_VAULT_ADDRESS, amount);
       await approveTx.wait();
 
@@ -169,7 +169,7 @@ function App() {
 
     setLoading(true);
     try {
-      const amount = ethers.utils.parseEther('100'); // Fixed amount of 100 tokens
+      const amount = ethers.parseEther('100'); // Fixed amount of 100 tokens
       const tx = await thumbVaultContract.withdraw(amount);
       await tx.wait();
 
@@ -189,7 +189,7 @@ function App() {
     }
 
     // Validate Ethereum address
-    if (!ethers.utils.isAddress(faucetRecipient)) {
+    if (!ethers.isAddress(faucetRecipient)) {
       alert('Invalid Ethereum address');
       return;
     }
