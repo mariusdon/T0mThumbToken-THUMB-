@@ -84,3 +84,4 @@ mnemonic.txt
 !frontend/public/
 !frontend/src/
 !frontend/netlify.toml
+!frontend/src/contracts/ThumbToken.json
