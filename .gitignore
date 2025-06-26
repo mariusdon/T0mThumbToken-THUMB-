@@ -4,3 +4,90 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.env.production
+
+# Node.js dependencies (but keep package.json and package-lock.json)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+yarn.lock
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+.python-version
+ttt-ml-env/
+
+# Hardhat/Smart Contracts build artifacts
+cache/
+artifacts/
+typechain-types/
+coverage/
+coverage.json
+
+# React/Next.js build outputs (generated during deployment)
+.next/
+out/
+build/
+.vercel
+*.tsbuildinfo
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+
+# ML Model/Data files (large files that shouldn't be in repo)
+*.h5
+*.pkl
+*.joblib
+*.pb
+*.onnx
+*.tflite
+model/
+models/
+saved_models/
+*.csv
+*.json
+*.xlsx
+*.xls
+data/
+datasets/
+raw_data/
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+*.ipynb
+
+# Blockchain/Web3 secrets
+.private_keys
+mnemonic.txt
+.secret
+.secrets
+
+# DO NOT IGNORE these important files for deployment:
+# !frontend/public/
+# !frontend/src/
+# !frontend/package.json
+# !frontend/package-lock.json
+# !frontend/netlify.toml
+# !README.md
+# !contracts/*.sol
